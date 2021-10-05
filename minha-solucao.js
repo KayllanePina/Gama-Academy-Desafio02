@@ -1103,7 +1103,7 @@ function valorDoInventario(){
         inventario += todosOsProdutos.preco * todosOsProdutos.qtdEstoque;
     }
 
-    console.log(`O valor total do inventário é: ${inventario.toFixed(2)} `)
+    console.log(`O valor total do inventário é: R$ ${inventario.toFixed(2)} `)
 }
 valorDoInventario();
 
@@ -1111,7 +1111,7 @@ valorDoInventario();
 function maisCaroDoDept(){
     let produtoMaisCaro = listaProdutos[0];
 
-   for (i=1; i<listaProdutos.length; i++){
+   for (let i = 1; i<listaProdutos.length; i++){
 
         let produto = listaProdutos[i];
 
@@ -1129,7 +1129,7 @@ maisCaroDoDept();
 function maisBaratoDoDept(){
     let produtoMaisBarato = listaProdutos[0];
 
-    for (i = 1; i< listaProdutos.length; i++){
+    for (let i = 1; i< listaProdutos.length; i++){
 
        let produto = listaProdutos[i];
        if (produto.preco < produtoMaisBarato.preco){
