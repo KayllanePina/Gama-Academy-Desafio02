@@ -1093,7 +1093,7 @@ var listaProdutos = [
   }
 ]
 
-// 1 - Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
+
 function Exercício01(){
     var totalProdutos=0;
     //como eu percorro uma lista?
@@ -1106,8 +1106,6 @@ function Exercício01(){
 }
 Exercício01()
 
-
-// 2 - Quantidade total de itens em destaque (somatória das quantidades dos itens marcados como "emDestaque : sim");
 function Exercício02(){
     var totalEmDestaque=0;
     for(i=0; i<listaProdutos.length; i++) {
@@ -1120,8 +1118,6 @@ function Exercício02(){
 }
 Exercício02()
 
-
-// 3 - Quantidade total de itens disponíveis (similar ao anterior)
 function Exercício03(){
     var totaldisponivel=0;
     for(i=0; i<listaProdutos.length; i++) {
@@ -1134,131 +1130,3 @@ function Exercício03(){
 }
 Exercício03()
 
-
-// 4 - Quantidade de itens disponíveis e em destaque
-function itensDispEmDestaque(){
-    let Disp = 0;
- 
-    for(let i =0; i < listaProdutos.length; i++){
-     let ProdutosDisp = listaProdutos[i];
-     if(ProdutosDisp.emDestaque == 'sim' && ProdutosDisp.disponivel == 'sim'){
-       Disp += ProdutosDisp.qtdEstoque;
-     };
- }  
-   
-   console.log(`\n A quantidade de itens disponíveis e em destaque é: ${Disp}`);
- }
- 
- itensDispEmDestaque();
-
-
-//5 - Valor total do inventário da empresa (somatória dos valores individuais multiplicado pela quantidade em estoque - considere apenas os produtos “EM ESTOQUE”)
-function valorDoInventario(){
-    let inventario = 0;
-
-    for(let i =0; i < listaProdutos.length; i++){
-        let todosOsProdutos = listaProdutos[i];
-        inventario += todosOsProdutos.preco * todosOsProdutos.qtdEstoque;
-    }
-
-    console.log(`\nO valor total do inventário é: ${inventario.toLocaleString('pt-Br', {style:'currency', currency:'BRL'})} `)
-}
-valorDoInventario();
-
-
-//6 - Produto mais caro da loja (bem como seu departamento - considere apenas o preço dele)
-function maisCaroDoDept(){
-    let produtoMaisCaro = listaProdutos[0];
-
-   for (let i = 1; i<listaProdutos.length; i++){
-
-        let produto = listaProdutos[i];
-
-        if (produto.preco > produtoMaisCaro.preco){
-                    produtoMaisCaro = produto;
-            }
-        }
-console.log(`\n Produto mais caro da loja: ${produtoMaisCaro.descricao}\n Valor: R$${produtoMaisCaro.preco}`);
-}
-
-maisCaroDoDept();
-
-
-// 7 - Produto mais barato da loja (bem como seu departamento - considere apenas o preço dele) 
-function maisBaratoDoDept(){
-    let produtoMaisBarato = listaProdutos[0];
-
-    for (let i = 1; i< listaProdutos.length; i++){
-
-       let produto = listaProdutos[i];
-       if (produto.preco < produtoMaisBarato.preco){
-            produtoMaisBarato = produto;
-     }
-  }
-     console.log(`\n Produto mais barato da loja: ${produtoMaisBarato.descricao}\n Valor: R$${produtoMaisBarato.preco}`);
-}
-
-maisBaratoDoDept();
-
-
-// 8 - Produto de estoque mais valioso (considere o preço multiplicado pela quantidade e também apenas EM ESTOQUE)
-function maisValioso(){
-    let produtoMaisValioso = listaProdutos[0];
-    for (i = 1; i< listaProdutos.length; i++){
-
-       let produto1 = listaProdutos[i];
-
-       if (produto1.qtdEstoque > 0){
-     } if(produto1.preco * produto1.qtdEstoque > produtoMaisValioso.preco * produtoMaisValioso.qtdEstoque){
-        produtoMaisValioso = produto1;
-         var ValorTotal = produtoMaisValioso.preco*produtoMaisValioso.qtdEstoque;
-     }
-  }
-     console.log(`\n O produto mais valioso da loja é o: ${produtoMaisValioso.preco}\n Valor: R$${ValorTotal}`);
-}
-
-maisValioso();
-
-// 9 - Produto em estoque menos valioso (considere o preço multiplicado pela quantidade e também apenas EM ESTOQUE)
-
-function menosValioso(){
-    let produtoMenosValioso = listaProdutos[0];
-    for (i = 1; i< listaProdutos.length; i++){
-       let produto1 = listaProdutos[i];
-
-       if (produto1.qtdEstoque > 0){
-        if(produto1.preco * produto1.qtdEstoque < produtoMenosValioso.preco * produtoMenosValioso.qtdEstoque){
-          produtoMenosValioso = produto1;
-          var ValorTotal = produtoMenosValioso.preco*produtoMenosValioso.qtdEstoque
-        }
-     }
-  }
-     console.log(`\n O produto menos valioso da loja é o: ${produtoMenosValioso.descricao}\n Valor: R$${ValorTotal}`);
-}
-
-menosValioso();
-
-
-// 10 - Valor do ticket médio dos produtos da empresa (basicamente o valor total do inventário dividido pelo número de itens - considere TODOS os produtos, porém considere apenas 1 exemplar por produto)
-
-function valorTicketMedio(){
-    let somaItens = 0;
-
-    let totalEstoque = 0;
-
-    let ticketMedio = 0;
-
-    for (let i = 0; i<listaProdutos.length; i++){
-        let produto = listaProdutos[i];
-        if (produto.qtdEstoque >= 1){
-
-            produto.qtdEstoque = 1;
-            somaItens += produto.qtdEstoque;
-            totalEstoque += produto.preco * produto.qtdEstoque;
-            ticketMedio = totalEstoque / somaItens;
-            
-        }
-    }
-    console.log(`\nO valor do ticket médio é ${ticketMedio.toLocaleString('pt-Br', {style:'currency', currency:'BRL'})}`)
-}
-valorTicketMedio();
