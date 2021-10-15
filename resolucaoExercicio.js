@@ -1265,9 +1265,94 @@ valorTicketMedio();
 
 
 // 11 - Somatória de itens por departamento (você deverá retornar um objeto contendo o nome do departamento e o total de itens nele - Novamente considere os produtos “EM ESTOQUE” - e é apenas a somatória da quantidade de itens)
+function sumItensDep (){
+    let Disp = 0;
+ 
+    for(let i =0; i < listaProdutos.length; i++){
+     let ProdutosDisp = listaProdutos[i];
+     if(ProdutosDisp.disponivel == 'sim'){
+       Disp += ProdutosDisp.qtdEstoque;
+     };
+ }
+ 
+for (let i = 0; i < listaProdutos.length; i++){  
+
+    let produto = listaProdutos[i];
+
+    if (produto.departamento.idDepto != codDepartamento){
+
+        let listaDeptos = {
+            nomeDepto: produto.departamento.nomeDepto,
+            idDoDept: produto.departamento.idDepto,
+            somaDosItens: 0,
+            totalEstoque = Disp,
+        };
+
+        listaDeptos.push(itensDaLista);
+        codDepartamento = produto.departamento.idDepto;
+        ProdutosDisp = qtdEstoque.Disp
+    }
+}
+
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[0].nomeDepto}: ${qtdEstoque[0].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[1].nomeDepto}: ${qtdEstoque[1].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[2].nomeDepto}: ${qtdEstoque[2].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[3].nomeDepto}: ${qtdEstoque[3].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[4].nomeDepto}: ${qtdEstoque[4].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[5].nomeDepto}: ${qtdEstoque[5].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[6].nomeDepto}: ${qtdEstoque[6].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[7].nomeDepto}: ${qtdEstoque[7].Disp};
+    console.log(`A quantidade de itens do depertamento ${listaDeptos[8].nomeDepto}: ${qtdEstoque[8].Disp};
+}
+sumItensDep();
 
 
 // 12 - Valor total do inventário por departamento (similar ao item anterior - considere TODOS os produtos)
+function valorInvPorDept (){
+    let listaDeptos = [];
+    let codDepartamento = 0;
+    for (let i = 0; i < listaProdutos.length; i++){  
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDepartamento){
+            let itensDaLista = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDoDept: produto.departamento.idDepto,
+                somaDosItens: 0,
+                totalEstoque: 0,
+                ValorTotal: 0
+            };
+            listaDeptos.push(itensDaLista);
+            codDepartamento = produto.departamento.idDepto;
+        }
+    }
+    
+    for (let i = 0; i < listaProdutos.length; i++){
+        let produto = listaProdutos[i];
+        for (let j = 0; j < listaDeptos.length; j++){
+            if (produto.departamento.idDepto == listaDeptos[j].idDoDept){
+                listaDeptos[j].somaDosItens += produto.qtdEstoque;
+                listaDeptos[j].totalEstoque += produto.preco * produto.ValorTotal;
+            }
+        }
+    }
+    for (let j = 0; j < listaDeptos.length; j++){
+     listaDeptos[j].ValorTotal = listaDeptos[j].totalEstoque * listaDeptos[j].somaDosItens;
+    }
+    console.log(`O valor total do departamento de ${listaDeptos[0].nomeDepto} é: ${listaDeptos[0].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    
+    console.log(`O valor total do departamento de ${listaDeptos[1].nomeDepto} é: ${listaDeptos[1].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    console.log(`O valor total do departamento de ${listaDeptos[2].nomeDepto} é: ${listaDeptos[2].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    console.log(`O valor total do departamento de ${listaDeptos[3].nomeDepto} é: ${listaDeptos[3].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    console.log(`O valor total do departamento de ${listaDeptos[4].nomeDepto} é: ${listaDeptos[4].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    console.log(`O valor total do departamento de ${listaDeptos[5].nomeDepto} é: ${listaDeptos[5].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    console.log(`O valor total do departamento de ${listaDeptos[6].nomeDepto} é: ${listaDeptos[6].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    console.log(`O valor total do departamento de ${listaDeptos[7].nomeDepto} é: ${listaDeptos[7].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+    console.log(`O valor total do departamento de ${listaDeptos[8].nomeDepto} é: ${listaDeptos[8].ValorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`);
+
+}
+
+
+valorInvPorDept();
 
 
 // 13 - Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio). Este é um exercícios difícil, porém é descomplicado de ser realizado tendo claro as demais saídas até então. Verifique a possibilidade de reutilizar parte da programação ou sua lógica trabalhada.
