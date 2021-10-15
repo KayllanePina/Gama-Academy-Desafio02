@@ -66,9 +66,9 @@ Kayllane Pina:
 
 `valorTicketMedio()`
 
-falta 11
+`sumItensDep()`
 
-falta 12
+`valorInvPorDept()`
 
 `ticketMedioPorDept()`
 
